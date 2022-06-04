@@ -1,3 +1,4 @@
+
 import parser.CSVParser
 import utilities.Constant
 
@@ -5,7 +6,6 @@ fun main() {
 
     val apps = CSVParser(Constant.FILE_NAME).getAllApps()
     val analyzer = Analyzer()
-
     println(
         "1# How many apps were developed by Google in the dataset? " +
                 "\n${analyzer.findNumberOfAppsByCompanyName(apps, "Google")}"

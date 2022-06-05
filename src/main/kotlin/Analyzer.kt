@@ -1,8 +1,9 @@
 import model.App
-import utilities.calculatePercentage
+import utilities.Converter
+
 
 class Analyzer {
-
+val converter = Converter()
     /**
      * @return number of apps with given companyName.
      * */
@@ -30,7 +31,7 @@ class Analyzer {
      * @return the parentage of given version.
      * */
     fun getPercentageAppsRunningOnSpecificVersion(apps: List<App>, version: Double): Double {
-        return calculatePercentage(
+        return converter.calculatePercentage(
             apps.count { it.requiresAndroid != null && it.requiresAndroid == version },
             apps.size
         )
@@ -42,7 +43,7 @@ class Analyzer {
      * */
     fun getPercentageOfCategory(apps: List<App>, categoryName: String): Double {
         return if (apps.isNotEmpty() && categoryName.isNotEmpty()) {
-            calculatePercentage(
+            converter.calculatePercentage(
                 apps.count { it.category.contains(categoryName.trim(), true) },
                 apps.size
             )

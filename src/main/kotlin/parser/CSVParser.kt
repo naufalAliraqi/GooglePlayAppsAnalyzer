@@ -8,7 +8,7 @@ import utilities.Constant
 import utilities.Converter
 import java.io.File
 
-class CSVParser(private val fileName: String,val converter: Converter) : DataSource {
+class CSVParser(private val fileName: String, private val converter: Converter) : DataSource {
 
     /**
      * @return list of apps after parsed from DataSet without repetition

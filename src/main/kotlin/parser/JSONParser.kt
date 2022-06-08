@@ -6,13 +6,13 @@ import model.App
 import org.json.JSONArray
 import org.json.JSONObject
 import utilities.Constant
-import utilities.convertToDouble
+import utilities.Converter
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class JSONParser(private val fileName: String) : DataSource {
+class JSONParser(private val fileName: String, private val converter: Converter) : DataSource {
     override fun getAllApps(): List<App> {
         val appList = ArrayList<App>()
         val jsonFile = File(fileName)
@@ -27,7 +27,7 @@ class JSONParser(private val fileName: String) : DataSource {
             val appSize = jsonObject.getString(Constant.ColumnIndexConstant.SIZE).convertStringToSizeUnit()
             val appInstalls = jsonObject.getLong(Constant.ColumnIndexConstant.INSTALLS)
             val appCurrentVersion = jsonObject.get(Constant.ColumnIndexConstant.CURRENT_VERSION)
-            val appRequiresAndroid = convertToDouble(jsonObject.getString(Constant.ColumnIndexConstant.REQUIRED_ANDROID))
+            val appRequiresAndroid = converter.convertToDouble(jsonObject.getString(Constant.ColumnIndexConstant.REQUIRED_ANDROID))
             appList.add(
                 App(
                     appName,

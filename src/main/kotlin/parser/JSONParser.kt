@@ -1,6 +1,5 @@
 package parser
 
-import convertStringToLocalDate
 import convertStringToSizeUnit
 import interfaces.DataSource
 import model.App
@@ -9,8 +8,9 @@ import org.json.JSONObject
 import utilities.Constant
 import utilities.convertToDouble
 import java.io.File
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class JSONParser(private val fileName: String) : DataSource {
     override fun getAllApps(): List<App> {
@@ -43,7 +43,9 @@ class JSONParser(private val fileName: String) : DataSource {
         }
         return appList
     }
-    private fun stringToDate(value: String): LocalDate {
-        return LocalDate.parse(value, DateTimeFormatter.ofPattern("MMMM d yyyy"))
+    private fun stringToDate(value: String): Date {
+        val formatter = SimpleDateFormat("MMMM d yyyy", Locale.ENGLISH)
+        return formatter.parse(value)
+       // return LocalDate.parse(value, DateTimeFormatter.ofPattern("MMMM d yyyy"))
     }
 }

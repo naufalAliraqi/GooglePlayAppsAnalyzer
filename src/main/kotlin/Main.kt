@@ -42,7 +42,8 @@ fun main() {
 
                 else -> println("Please enter a valid number")
             }
-        } while (inputToCheck != 7)
+        } while (inputToCheck != 8)
+
     }
 }
 

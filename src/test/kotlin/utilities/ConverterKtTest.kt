@@ -5,8 +5,11 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 import java.text.SimpleDateFormat
 
-internal class ConverterKtTest{
-val converter = Converter()
+
+
+internal class ConverterKtTest {
+
+    private val converter = Converter()
     @Test // Test point #3
     fun should_ReturnMinus1_When_CalculatePercentage_DivideOnZero() {
         val dividend = 10

@@ -1,9 +1,8 @@
 import model.App
 import utilities.Converter
 
+class Analyzer(private val converter: Converter) {
 
-class Analyzer {
-val converter = Converter()
     /**
      * @return number of apps with given companyName.
      * */

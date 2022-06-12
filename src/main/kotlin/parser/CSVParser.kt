@@ -1,15 +1,14 @@
 package parser
 
-import convertStringToLocalDate
-import convertStringToSizeUnit
+import convertStringToDate
 import interfaces.DataSource
 import model.App
+import toMegaByteSize
 import utilities.Constant
-import utilities.convertStringToDate
-import utilities.convertToDouble
+import utilities.Converter
 import java.io.File
 
-class CSVParser(private val fileName: String) : DataSource {
+class CSVParser(private val fileName: String, private val converter: Converter) : DataSource {
 
     /**
      * @return list of apps after parsed from DataSet without repetition
@@ -35,10 +34,11 @@ class CSVParser(private val fileName: String) : DataSource {
             appName = mList[Constant.ColumnIndex.APP_NAME],
             company = mList[Constant.ColumnIndex.COMPANY],
             category = mList[Constant.ColumnIndex.CATEGORY],
-            updatedDate = mList[Constant.ColumnIndex.UPDATE_DATE].convertStringToLocalDate(),
-            size = mList[Constant.ColumnIndex.SIZE].convertStringToSizeUnit(),
+            updatedDate = mList[Constant.ColumnIndex.UPDATE_DATE].convertStringToDate(),
+            size = mList[Constant.ColumnIndex.SIZE].toMegaByteSize(),
             installs = mList[Constant.ColumnIndex.INSTALLS].toLong(),
-            requiresAndroid = convertToDouble(mList[Constant.ColumnIndex.REQUIRED_ANDROID])
+            currentVersion = mList[Constant.ColumnIndex.CURRENT_VERSION],
+            requiresAndroid = converter.convertToDouble(mList[Constant.ColumnIndex.REQUIRED_ANDROID])
         )
     }
 

@@ -13,6 +13,7 @@ fun main() {
                     "\n${findNumberOfAppsByCompanyName(apps, "Google")}"
         )
         println("--------------------------------------------")
+
         println(
             "2# What is the percentage of Medical apps?" +
                     "\n%${getPercentageOfCategory(apps, "Medical")}"
